@@ -1,8 +1,9 @@
 package com.example.benet.restaurantsfullapp.Model;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.benet.restaurantsfullapp.Model.Adapters.AdaperListRestaurants;
 import com.example.benet.restaurantsfullapp.R;
 import com.example.benet.restaurantsfullapp.Util.Constants;
 
@@ -28,6 +30,10 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     private ArrayList<Restaurant> data;
     private OnFragmentInteractionListener mListener;
     private int auxPos;
+    private Bundle arg;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     public ListFragment() {
         // Required empty public constructor
@@ -83,9 +89,9 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                         return true;
                     case R.id.ic_edit:
 
-                        Intent intent=new Intent(getActivity(), EditActivity.class);
-                        intent.putExtra(Constants.SEND_ITEM_EDIT, data.get(auxPos));
-                        startActivityForResult(intent, Constants.REQUEST_EDIT);
+                            Intent intent=new Intent(getActivity(), EditActivity.class);
+                            intent.putExtra(Constants.SEND_ITEM_EDIT, data.get(auxPos));
+                            startActivityForResult(intent, Constants.REQUEST_EDIT);
 
                         return true;
                     default:
@@ -98,6 +104,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             public void onDestroyActionMode(ActionMode mode) {
 
             }
+
         });
 
     }
@@ -144,6 +151,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         }
 
         if(getArguments()!=null){
+            arg=getArguments();
             data=(ArrayList<Restaurant>)getArguments().getSerializable(Constants.SEND_DATA_TO_LIST);
         }
 

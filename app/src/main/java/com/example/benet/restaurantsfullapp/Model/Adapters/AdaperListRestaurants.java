@@ -1,4 +1,4 @@
-package com.example.benet.restaurantsfullapp.Model;
+package com.example.benet.restaurantsfullapp.Model.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.benet.restaurantsfullapp.Model.Restaurant;
 import com.example.benet.restaurantsfullapp.R;
 
 import java.util.ArrayList;

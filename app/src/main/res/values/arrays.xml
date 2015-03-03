@@ -28,7 +28,8 @@
     <string-array name="r_imgs">
 
         <item>ic_launcher</item>
-
+        <item>ic_r_one</item>
+        <item>ic_r_two</item>
     </string-array>
 
 </resources>

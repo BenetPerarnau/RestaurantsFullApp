@@ -10,6 +10,7 @@ public class Constants {
 
     public final static String WEB_F_TAG="web fragment tag";
     public final static String LIST_F_TAG="list fragment tag";
+    public final static String EDIT_F_TAG="edit fragment tag";
 
     public final static int REQUEST_EDIT=1;
 

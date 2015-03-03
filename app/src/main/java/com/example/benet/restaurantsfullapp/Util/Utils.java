@@ -3,6 +3,7 @@ package com.example.benet.restaurantsfullapp.Util;
 import android.app.Activity;
 
 import com.example.benet.restaurantsfullapp.Model.Restaurant;
+import com.example.benet.restaurantsfullapp.Model.SpinnerModel;
 import com.example.benet.restaurantsfullapp.R;
 
 import java.util.ArrayList;
@@ -12,11 +13,10 @@ import java.util.ArrayList;
  */
 public class Utils {
 
-    private static ArrayList<Restaurant> data;
 
     public static ArrayList<Restaurant> getRestaurants(Activity a){
 
-        data=new ArrayList<Restaurant>();
+        ArrayList<Restaurant> data=new ArrayList<Restaurant>();
 
         String [] names=a.getResources().getStringArray(R.array.r_names);
         String [] citys=a.getResources().getStringArray(R.array.r_citys);
@@ -39,5 +39,20 @@ public class Utils {
 
     }
 
+    public static ArrayList<SpinnerModel> getItemsSpinner(Activity v){
 
+        ArrayList<SpinnerModel> data=new ArrayList<SpinnerModel>();
+
+        String [] img=v.getResources().getStringArray(R.array.r_imgs);
+
+        //while(data.size()<10) {
+
+            for (int i = 0; i < img.length; i++) {
+                data.add(new SpinnerModel(v.getResources().getIdentifier(img[i], "mipmap", v.getPackageName()),
+                                "Img restaurant spinner "+(i+1))
+                );
+            }
+        //}
+        return  data;
+    }
 }

@@ -2,14 +2,11 @@ package com.example.benet.restaurantsfullapp.Test;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.benet.restaurantsfullapp.Model.AdaperListRestaurants;
 import com.example.benet.restaurantsfullapp.Model.ListFragment;
 import com.example.benet.restaurantsfullapp.Model.Restaurant;
 import com.example.benet.restaurantsfullapp.Model.WebFragment;
@@ -41,19 +38,19 @@ public class MainActivity extends ActionBarActivity implements ListFragment.OnFr
 
         if(findViewById(R.id.container_mobile)!=null){
 
-            fragmentTransaction.add(R.id.container_mobile,listFragment);
+            fragmentTransaction.add(R.id.container_mobile,listFragment).commit();
 
         }else{
 
-            fragmentTransaction.add(R.id.c_f_list,listFragment,Constants.LIST_F_TAG);
+            fragmentTransaction.add(R.id.c_f_list,listFragment,Constants.LIST_F_TAG).commit();
+            fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.addToBackStack(null);
             webFragment=new WebFragment();
             bundle.putSerializable(Constants.SEND_URL_TO_WEB,data.get(0).getUrl());
             webFragment.setArguments(bundle);
-            fragmentTransaction.add(R.id.c_f_detail,webFragment,Constants.WEB_F_TAG);
-
+            fragmentTransaction.add(R.id.c_f_detail,webFragment,Constants.WEB_F_TAG).commit();
         }
 
-        fragmentTransaction.commit();
     }
 
 
@@ -104,7 +101,7 @@ public class MainActivity extends ActionBarActivity implements ListFragment.OnFr
                 webFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.container_mobile,webFragment ).commit();
 
-        }else{
+        }else if(this.getFragmentManager().findFragmentByTag(Constants.WEB_F_TAG)!=null){
 
             WebFragment webFragment=(WebFragment)this.getFragmentManager().findFragmentByTag(Constants.WEB_F_TAG);
 
